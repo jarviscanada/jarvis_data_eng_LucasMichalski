@@ -54,6 +54,7 @@ The script to collect host usage can be run manually in the same way as host inf
 
 ## Implementation
 ### Architecture
+Diagram shows example architecture with three Linux hosts, a DB, and agents.
 ![Linux Cluster Monitoring Architecture](assets/linux_monitoring_architecture.png)
 
 ### Scripts
