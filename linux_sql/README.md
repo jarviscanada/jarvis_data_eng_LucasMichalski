@@ -12,7 +12,7 @@ Docker is required for this project. Please verify docker is installed on the Li
 ### Initializing PostgreSQL
 Run the following command from within the linux_sql directory:
 ```
-./scripts/psql_docker.sh create <db_username> <db_password>
+bash scripts/psql_docker.sh create <db_username> <db_password>
 ```
 The above script provisions a Docker container named jrvs-psql and a persistent volume named pgdata.\
 PostgreSQL is accessible locally at 127.0.0.1:5432.
