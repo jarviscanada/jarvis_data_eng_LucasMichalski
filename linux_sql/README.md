@@ -47,7 +47,12 @@ Host info is collected once at project setup. To collect the Linux host hardware
 bash scripts/host_info.sh 127.0.0.1 5432 host_agent postgres {password}
 ```
 #### Host Usage
-Host Usage is collected periodically through the use of a cron job. 
+The script to collect host usage can be run manually in the same way as host info. For regular collection however, we used crontab to set a job to collect data once per minute:
 ```
 * * * * * bash /home/rocky/dev/jarvis_data_eng_LucasMichalski/linux_sql/scripts/host_usage.sh 127.0.0.1 5432 host_agent postgres "" > /home/rocky/host_usage_cron.log 2>&1
 ```
+
+## Implementation
+### Architecture
+
+
