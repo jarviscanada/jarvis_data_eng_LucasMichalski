@@ -9,12 +9,13 @@ The architecture is designed to scale across multiple Linux hosts by deploying t
 ## Quick Start
 ### Docker
 Docker is required for this project. Please verify docker is installed on the Linux host using `docker --version`. If docker is not installed, please follow the [Official Docker installation instructions for RHEL-based Linux](https://docs.docker.com/engine/install/rhel).
-### PostgreSQL
-To initialize the Postgres instance, create and start a PostgreSQL 17 container using the psql_docker.sh script. Run the following command from within the linux_sql directory:
+### Initializing PostgreSQL
+Run the following command from within the linux_sql directory:
 ```
 bash scripts/psql_docker.sh create <db_username> <db_password>
 ```
-The above script provisions a Docker container named jrvs-psql and a persistent volume named pgdata. PostgreSQL is accessible locally at 127.0.0.1:5432.
+The above script provisions a Docker container named jrvs-psql and a persistent volume named pgdata.\
+PostgreSQL is accessible locally at 127.0.0.1:5432.
 
 To verify the container is running:
 ```
@@ -29,4 +30,15 @@ bash scripts/psql_docker.sh start
 #Stop
 bash scripts/psql_docker.sh stop
 ```
+
+### Creating Tables
+Create the application database
+```
+# Create the application database
+psql -h localhost -U postgres -d postgres -c "CREATE DATABASE host_agent;"
+
+# Create tables in the application database
+psql -h localhost -U postgres -d host_agent -f sql/ddl.sql
+```
+
 
