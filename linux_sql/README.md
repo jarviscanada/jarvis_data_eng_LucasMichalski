@@ -7,9 +7,9 @@ The MVP was implemented and tested on a single Rocky Linux host, using Bash scri
 
 The architecture is designed to scale across multiple Linux hosts by deploying the monitoring agents on additional servers.
 ## Quick Start
-### Docker
+### 1. Docker
 Docker is required for this project. Please verify docker is installed on the Linux host using `docker --version`. If docker is not installed, please follow the [Official Docker installation instructions for RHEL-based Linux](https://docs.docker.com/engine/install/rhel).
-### Initializing PostgreSQL
+### 2. Initializing PostgreSQL
 Run the following command from within the linux_sql directory:
 ```
 bash scripts/psql_docker.sh create <db_username> <db_password>
@@ -31,7 +31,7 @@ bash scripts/psql_docker.sh start
 bash scripts/psql_docker.sh stop
 ```
 
-### Creating Tables
+### 3. Creating Tables
 Create the application database
 ```
 # Create the application database
@@ -41,13 +41,13 @@ psql -h localhost -U postgres -d postgres -c "CREATE DATABASE host_agent;"
 psql -h localhost -U postgres -d host_agent -f sql/ddl.sql
 ```
 
-### Host Info
+### 4. Collecting Host Info
 Host info is collected once at project setup. To collect the Linux host hardware data, run the following command:
 ```
 bash scripts/host_info.sh 127.0.0.1 5432 host_agent postgres {password}
 ```
-#### Host Usage
-The script to collect host usage can be run manually in the same way as host info. For regular collection however, we used crontab to set a job to collect data once per minute:
+#### 5. Collecting and Automating Host Usage
+The script to collect host usage can be run manually in the same way as host info. For regular collection however, use crontab to initialize a job that collects data once per minute:
 ```
 * * * * * bash /home/rocky/dev/jarvis_data_eng_LucasMichalski/linux_sql/scripts/host_usage.sh 127.0.0.1 5432 host_agent postgres "" > /home/rocky/host_usage_cron.log 2>&1
 ```
