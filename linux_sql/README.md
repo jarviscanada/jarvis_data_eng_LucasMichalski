@@ -54,5 +54,11 @@ The script to collect host usage can be run manually in the same way as host inf
 
 ## Implementation
 ### Architecture
+![Linux Cluster Monitoring Architecture](assets/linux_monitoring_architecture.png)
 
-
+## Scripts
+- psql_docker.sh: 
+- host_info.sh
+- host_usage.sh
+- crontab
+- queries.sql 
