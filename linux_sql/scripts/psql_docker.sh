@@ -6,7 +6,10 @@ db_username=$2
 db_password=$3
 
 # Start docker
-sudo systemctl status docker || sudo systemctl start docker
+sudo systemctl status docker || sudo systemctl start docker || {
+    echo "Error: Failed to start Docker" >&2
+    exit 1
+}
 
 # Check container status
 docker container inspect jrvs-psql
